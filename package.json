@@ -1,17 +1,48 @@
 {
-  "name": "try-react-electron",
-  "version": "0.1.0",
+  "name": "HUFSuploader",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "async": "^2.6.1",
+    "electron-debug": "^2.1.0",
+    "form-data": "^2.3.3",
+    "node-fetch": "^2.3.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-router": "^4.3.1",
     "react-scripts": "2.1.3"
   },
+  "main": "src/electron-starter.js",
+  "homepage": "./",
   "scripts": {
-    "start": "react-scripts start",
+    "react-start": "BROWSER=none react-scripts start",
+    "react-build": "react-scripts build",
+    "start": "nf start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "NODE_ENV=development electron .",
+    "dist": "npm run react-build && build -w"
+  },
+  "build": {
+    "appId": "yourappid",
+    "extends": null,
+    "directories": {
+      "buildResources": "public"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": "portable"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +52,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "electron": "^4.0.2",
+    "electron-builder": "^20.38.5",
+    "foreman": "^3.0.1"
+  }
 }
