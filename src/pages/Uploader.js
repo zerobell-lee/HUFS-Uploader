@@ -56,8 +56,8 @@ class Uploader extends Component {
     console.log('Started upload')
     var pathArr = []
 
-    for (var i = 0; i < this.fileInput.current.files.length; i++) {
-      pathArr[i] = this.fileInput.current.files[i].path
+    for (var i = 0; i < this.state.files.length; i++) {
+      pathArr[i] = this.state.files[i].path
     }
 
     console.log(pathArr)

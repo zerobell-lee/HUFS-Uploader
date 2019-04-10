@@ -1,68 +1,26 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# HUFS Uploader (부제 : 학교 홈페이지, 이렇게 구려도 괜찮은가?)
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+학교 홈페이지 게시판의 업로드 기능이 너무 허접해서 따로 제작한 업로더입니다. 제가 만든 프로그램도 허접하지만 그래도 굳이 홈페이지에 들어가지 않고서도 여러 파일을 올릴 수 있다는 장점은 있습니다.
 
-### `npm start`
+## Libraries
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* electron, electron-builder
+* react(create react app)
+* foreman
+* react-file-drop
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## TO-DO
 
-### `npm test`
+* 자동 로그아웃 방지를 위해 일정간격으로 GET 요청 넣도록 수정
+* 파일 드롭존을 개선
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  * 파일이 올라갈 때, grid 형태로 이미지들이 표시되도록 설정. 이미지는 클릭으로 삭제가 가능함.
+  * 모달 추가 요망
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* 로그아웃 메뉴 추가
+* 앱 정보 보기 메뉴 추가
+* 앱에 관련된 정보는 하드코딩하지 말고 따로 json으로 저장
+* 파일 업로드 전에 현재 로그인이 되어 있고, 업로드 권한이 있는지 확인(업로드에 실패해도 return되는 것이 없다..)
+* 디자인 개선. 심각하다 지금.

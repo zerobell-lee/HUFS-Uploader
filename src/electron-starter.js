@@ -58,7 +58,7 @@ makeUploadForm = path => {
 
 trim = (str) => str.replace(/^\s*/,'').replace(/\s*$/, '')
 
-doWrite = (event, title, files, name) => {
+doWrite = async (event, title, files, name) => {
 
   event.sender.send('SetTextArea', 'writing...')
   frm = new FormData();
@@ -129,11 +129,14 @@ doWrite = (event, title, files, name) => {
   frm.append('upLoadFileText', upLoadFileText)
   frm.append('size_list', size_list)
   frm.append('fileSize', '' + fileSize) //different
-  event.sender.send('log', frm)
+  event.sender.send('log', frm.toString())
 
   var ck = 'sso_token=' + token + '; JSESSIONID_WWW=' + jses + '; ' + 'WMONID=' + wmon
-  fetch('http://builder.hufs.ac.kr/user/albumWriteExecute.action', {method: 'POST', headers: {'Cookie': ck}, body: frm})
-  .then(res=>event.sender.send('SetTextArea', res.body()))
+
+  let ress = fetch('http://builder.hufs.ac.kr/user/albumWriteExecute.action', {method: 'POST', headers: {'Cookie': ck}, body: frm})
+  .then(res => res)
+
+  event.sender.send('log', ress)
   
 
 }
@@ -167,13 +170,10 @@ doLogin = (event, arg) => {
   .then(cookie => {
     cookies = setCookie.parse(setCookie.splitCookiesString(cookie), { map: true})
     if (cookies.sso_token) {
-      token= cookies.sso_token.value
-      jses= cookies.JSESSIONID_WWW.value
-      wmon= cookies.WMONID.value
+      token = cookies.sso_token.value
+      jses = cookies.JSESSIONID_WWW.value
+      wmon = cookies.WMONID.value
 
-      /*token = 'Vy23zFySFx5FASzTyGIDx5FDEMO1zCy1550059784zPy86400zAy33zEyjdl9x2Fqs03rrKiTlLx79x78x780jvutcq6KqoVrE9TtwcZiAlA79Ye24ET3PDe4l2cJs8x7AQuie36fvENFQSQWx78aNHIFvokMmco9TQ3WgD2ZBN5tARBK8Kotw6k3GnR9f6STJVCMKvRHPAx789EcEsXnV1QReC0msAIIatgM872x2FuLMjGIwncP7S0Yx7Aox79HOGlx2FasDCUW8hwYx2FX54pox79LdQx78gTo1aphGUx2FhSOsax2Fx2BQ7x78iGK2px792ldOLLx78bUX5LnVh2huWmSF8YJhU3llx2Fwad2LMS26vRg065cER1Yx2Bx79hosXgKAkCtctx79KZ4qudUcx2FrCLcLI3LAhjrpvCx7AKj0GABPGpoc0oFBZRhVN0x2FFYvpx2Fjx2F1bKjtZnx79QowvXlG2ISbmrfQdObd9ijdRCYchdvICe4kJ02lLx2BEkx2BCUQx3Dx3DzKywC49Rhcgx2BXN22Gx78rEXisex79L0Hx79x2FR1x79DBuaEagYBM2eEx3DzMyvOKwK0cQeu4x3Dz'
-      jses = 'JuXzNEvO0SHq1DB4utEn2QZNKJs9T5xOxckFrWu5drvekuioUjBHpDptBM4vdqt7.www_servlet_builder'
-      wmon = 'gETJTSH2eWQ'*/
       current_id = arg.id
 
       event.sender.send('login result', {success: true})
